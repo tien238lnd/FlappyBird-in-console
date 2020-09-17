@@ -30,7 +30,7 @@ typedef	int COLOR;
 
 void putncharbuff(char c, COLOR textclr, COLOR backclr, int x, int y, int n = 1);
 
-void putfilebuff(char s[], COLOR textclr, COLOR backclr, int x, int y);
+void putfilebuff(const char* s, COLOR textclr, COLOR backclr, int x, int y);
 
 void putnumberbuff(int number, COLOR textclr, COLOR backclr, int x, int y);
 

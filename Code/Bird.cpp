@@ -128,7 +128,7 @@ static const int g = 2500;
 
 void _putbird2buff_and_update_edge_coord(BIRD &bird, char c)
 {
-    int (*bird_figure)[16];
+    int (*bird_figure)[16] = new int[16][16];
     switch(angle)
     {
         case -2: bird_figure = bird_figure_3;
@@ -151,28 +151,30 @@ void _putbird2buff_and_update_edge_coord(BIRD &bird, char c)
     }
 
     int count = 1;
-    for (int i = 0; i < 16; i++)
-        for (int j = 0; j < 16; j++)
-    {
-        switch(bird_figure[i][j])
-        {
-        case 0: break;
-        case 1:
-            putncharbuff(c, BLACK, BGD_CLR, j+x, i+bird.y); break;
-        case 2:
-            putncharbuff(c, LTYELLOW, BGD_CLR, j+x, i+bird.y); break;
-        case 3:
-            putncharbuff(c, YELLOW, BGD_CLR, j+x, i+bird.y); break;
-        case 4:
-            putncharbuff(c, RED, BGD_CLR, j+x, i+bird.y); break;
-        case 5:
-            putncharbuff(c, WHITE, BGD_CLR, j+x, i+bird.y); break;
-        case 9:
-            bird.edgepoint[count].x = j+x;
-            bird.edgepoint[count].y = i+bird.y;
-            count ++; break;
-        }
-    }
+	for (int i = 0; i < 16; i++)
+	{
+		for (int j = 0; j < 16; j++)
+		{
+			switch (bird_figure[i][j])
+			{
+			case 0: break;
+			case 1:
+				putncharbuff(c, BLACK, BGD_CLR, j + x, i + bird.y); break;
+			case 2:
+				putncharbuff(c, LTYELLOW, BGD_CLR, j + x, i + bird.y); break;
+			case 3:
+				putncharbuff(c, YELLOW, BGD_CLR, j + x, i + bird.y); break;
+			case 4:
+				putncharbuff(c, RED, BGD_CLR, j + x, i + bird.y); break;
+			case 5:
+				putncharbuff(c, WHITE, BGD_CLR, j + x, i + bird.y); break;
+			case 9:
+				bird.edgepoint[count].x = j + x;
+				bird.edgepoint[count].y = i + bird.y;
+				count++; break;
+			}
+		}
+	}
     bird.edgepoint[0].x = count;
 }
 
@@ -210,7 +212,7 @@ void init_bird(BIRD &bird)                                 //ok
         delay(100);
         _putbird2buff_and_update_edge_coord(bird, ' ');
         wing = -wing;
-   } while (!kbhit() || (getch() != 32));
+   } while (!_kbhit() || (_getch() != 32));
    draw_background();
     _update(bird);
 }

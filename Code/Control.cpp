@@ -53,7 +53,7 @@ void start_screen()
     initsound();
     hidecursor();
     init_screen();
-    while ((getch() != 13));
+    while ((_getch() != 13));
     button();
     return;
 }
@@ -71,7 +71,7 @@ void game_over(int score)
     putnumberbuff(bestscore, RED, BGD_CLR, 135, 53);
     putfilebuff("Text/Again.txt", RED, LTYELLOW, 0, HEIGHT - GROUND_H + 3);
     printbuff();
-    while ((getch() != 13));
+    while ((_getch() != 13));
     button();
     return;
 

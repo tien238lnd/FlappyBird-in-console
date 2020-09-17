@@ -1,5 +1,6 @@
 #include "Buffscreen.h"
 #include <fstream>
+
 using namespace std;
 
 static CHAR_INFO _buff[HEIGHT][WIDTH];
@@ -56,7 +57,7 @@ void putncharbuff(char c, COLOR textclr, COLOR backclr, int x, int y, int n)    
     }
 }
 
-void putfilebuff(char s[], COLOR textclr, COLOR backclr, int x, int y)
+void putfilebuff(const char* s, COLOR textclr, COLOR backclr, int x, int y)
 {
 
 	char c;
@@ -80,9 +81,9 @@ void putfilebuff(char s[], COLOR textclr, COLOR backclr, int x, int y)
 }
 
 
-char* _choosefile(int number)
+const char* _choosefile(int number)
 {
-    char * s;
+	const char* s = new char[18];
 	switch (number)
 	{
 		case 0: s = "Number/number0.txt"; break;

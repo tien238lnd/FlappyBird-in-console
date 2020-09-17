@@ -27,16 +27,16 @@ int main()
         printbuff();
       //  moving_time += 10;
 
-        if (kbhit())
+        if (_kbhit())
         {
-            int key = getch();
+            int key = _getch();
             if (key == 32) flapping_bird(bird);
             else
             {
                 button();
                 putfilebuff("Text/Continue.txt", RED, LTYELLOW, 28, HEIGHT - GROUND_H + 3);
                 printbuff();
-                while (!getch()){};
+                while (!_getch()){};
                 putfilebuff("Text/Pause.txt", RED, LTYELLOW, 28, HEIGHT - GROUND_H + 3);
                 button();
             }
